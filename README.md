@@ -15,7 +15,7 @@ Terraform won't create the child projects for you (it could, but that gets messy
 
 ## Usage:
 1. First off, you'll need to store the Terraform state somewhere. You could use local state, but it's not recommended, so:
-    1. Create a GCS storage bucket; call it "$PARENT_PROJECT_ID-tfstate"
+    1. Create a GCS storage bucket (recommended name: "$PARENT_PROJECT_ID-tfstate")
 2. Initialize Terraform
     1. `terraform init`
     2. At the prompt, enter the name of the GCS bucket that you created for state storage
@@ -26,3 +26,7 @@ Terraform won't create the child projects for you (it could, but that gets messy
     1. `terraform apply`
     2. When prompted, type `yes` to apply the configuration
         * _tip: add flag `--auto-approve` to skip confirmation_
+    3. Identical resources will be configured in every child project
+5. Change some stuff!
+    1. You can make changes to the terraform resources (edit the `*.tf` files)
+    2. Then re-run `terraform apply` to change them; the changes will propagate across all child projects
